@@ -8,11 +8,17 @@ void ImprimirPantalla();
 void GenerarMapa();
 void Inputs();
 void Start();
+void Logica();
 
-char consolScreen[CONSOLE_HEIGHT][CONSOLE_WIDTH];
+enum MAP_TILES {EMPTY = ' ', WALL = '#', POINT = '.'};
+enum USER_INPUTS {NONE, UP, DOWN, RIGHT, LEFT, QUIT};
+
+MAP_TILES ConsoleScreen[CONSOLE_HEIGHT][CONSOLE_WIDTH];
+
 char personaje = 'O';
 int personaje_x = 10;
 int personaje_y = 5;
+USER_INPUTS input = USER_INPUTS::NONE;
 bool quit = false;
 
 int main() {
@@ -21,6 +27,7 @@ int main() {
 	do
 	{
 		Inputs();
+		Logica();
 		ImprimirPantalla();
 	} while (!quit);
 }
@@ -31,34 +38,66 @@ void Start() {
 }
 
 void Inputs() {
-	char input;
-	cin >> input;
+	char input_raw;
+	cin >> input_raw;
 
-	switch (input)
+	switch (input_raw)
 	{
 		case 'W':
 		case 'w':
-			personaje_y--;
+			input = USER_INPUTS::UP;
 			break;
 		case 'A':
 		case 'a':
-			personaje_x--;
+			input = USER_INPUTS::LEFT;
 			break;
 		case 'S':
 		case 's':
-			personaje_y++;
+			input = USER_INPUTS::DOWN;
 			break;
 		case 'D':
 		case 'd':
-			personaje_x++;
+			input = USER_INPUTS::RIGHT;
 			break;
 		case 'Q':
 		case 'q':
-			quit = true;
+			input = USER_INPUTS::QUIT;
 			break;
 		default:
+			input = USER_INPUTS::NONE;
 			break;
 	}
+}
+
+void Logica() {
+	int personaje_y_new = personaje_y;
+	int personaje_x_new = personaje_x;
+	
+	switch (input)
+	{
+	case UP:
+		personaje_y_new--;
+		break;
+	case DOWN:
+		personaje_y_new++;
+		break;
+	case RIGHT:
+		personaje_x_new++;
+		break;
+	case LEFT:
+		personaje_x_new--;
+		break;
+	case QUIT:
+		quit = true;
+		break;
+	}
+
+	if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::WALL) {
+		personaje_y_new = personaje_y;
+		personaje_x_new = personaje_x;
+	}
+	personaje_y = personaje_y_new;
+	personaje_x = personaje_x_new;
 }
 
 void GenerarMapa() {
@@ -69,11 +108,11 @@ void GenerarMapa() {
 		{
 			if (i == 0 || i == CONSOLE_HEIGHT-1 || j == 0 || j == CONSOLE_WIDTH-1)
 			{
-				consolScreen[i][j] = '#';
+				ConsoleScreen[i][j] = MAP_TILES::WALL;
 			}
 			else
 			{
-				consolScreen[i][j] = '-';
+				ConsoleScreen[i][j] = MAP_TILES::EMPTY;
 			}
 		}
 		cout << endl;
@@ -94,16 +133,9 @@ void ImprimirPantalla() {
 			}
 			else
 			{
-				cout << consolScreen[i][j];
+				cout << (char)ConsoleScreen[i][j];
 			}
 		}
 		cout << endl;
 	}
-	
-	
-	for (size_t i = 0; i < 3; i++)
-	{
-		cout << endl;
-	}
-	
 }
