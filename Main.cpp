@@ -18,6 +18,8 @@ MAP_TILES ConsoleScreen[CONSOLE_HEIGHT][CONSOLE_WIDTH];
 char personaje = 'O';
 int personaje_x = 10;
 int personaje_y = 5;
+int map_points = 0;
+int player_points = 0;
 USER_INPUTS input = USER_INPUTS::NONE;
 bool quit = false;
 
@@ -29,7 +31,7 @@ int main() {
 		Inputs();
 		Logica();
 		ImprimirPantalla();
-	} while (!quit);
+	} while (!quit && map_points >= 0);
 }
 
 void Start() {
@@ -96,8 +98,15 @@ void Logica() {
 		personaje_y_new = personaje_y;
 		personaje_x_new = personaje_x;
 	}
+	else if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::POINT) {
+		map_points--;
+		player_points++;
+		ConsoleScreen[personaje_y_new][personaje_x_new] = MAP_TILES::EMPTY;
+	}
 	personaje_y = personaje_y_new;
 	personaje_x = personaje_x_new;
+
+	if (map_points == 0) quit = true;
 }
 
 void GenerarMapa() {
@@ -117,6 +126,17 @@ void GenerarMapa() {
 		}
 		cout << endl;
 	}
+
+	ConsoleScreen[5][11] = MAP_TILES::POINT;
+	map_points++;
+	ConsoleScreen[5][12] = MAP_TILES::POINT;
+	map_points++;
+	ConsoleScreen[5][13] = MAP_TILES::POINT;
+	map_points++;
+	ConsoleScreen[5][14] = MAP_TILES::POINT;
+	map_points++;
+	ConsoleScreen[5][15] = MAP_TILES::POINT;
+	map_points++;
 }
 
 void ImprimirPantalla() {
@@ -138,4 +158,6 @@ void ImprimirPantalla() {
 		}
 		cout << endl;
 	}
+
+	cout << player_points << "/" << map_points << endl;
 }
