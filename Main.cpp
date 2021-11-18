@@ -10,8 +10,8 @@ void Inputs();
 void Start();
 void Logica();
 
-enum MAP_TILES {EMPTY = ' ', WALL = '#', POINT = '.'};
-enum USER_INPUTS {NONE, UP, DOWN, RIGHT, LEFT, QUIT};
+enum MAP_TILES { EMPTY = ' ', WALL = '#', POINT = '.' };
+enum USER_INPUTS { NONE, UP, DOWN, RIGHT, LEFT, QUIT };
 
 MAP_TILES ConsoleScreen[CONSOLE_HEIGHT][CONSOLE_WIDTH];
 
@@ -24,7 +24,7 @@ USER_INPUTS input = USER_INPUTS::NONE;
 bool quit = false;
 
 int main() {
-	
+
 	Start();
 	do
 	{
@@ -45,36 +45,36 @@ void Inputs() {
 
 	switch (input_raw)
 	{
-		case 'W':
-		case 'w':
-			input = USER_INPUTS::UP;
-			break;
-		case 'A':
-		case 'a':
-			input = USER_INPUTS::LEFT;
-			break;
-		case 'S':
-		case 's':
-			input = USER_INPUTS::DOWN;
-			break;
-		case 'D':
-		case 'd':
-			input = USER_INPUTS::RIGHT;
-			break;
-		case 'Q':
-		case 'q':
-			input = USER_INPUTS::QUIT;
-			break;
-		default:
-			input = USER_INPUTS::NONE;
-			break;
+	case 'W':
+	case 'w':
+		input = USER_INPUTS::UP;
+		break;
+	case 'A':
+	case 'a':
+		input = USER_INPUTS::LEFT;
+		break;
+	case 'S':
+	case 's':
+		input = USER_INPUTS::DOWN;
+		break;
+	case 'D':
+	case 'd':
+		input = USER_INPUTS::RIGHT;
+		break;
+	case 'Q':
+	case 'q':
+		input = USER_INPUTS::QUIT;
+		break;
+	default:
+		input = USER_INPUTS::NONE;
+		break;
 	}
 }
 
 void Logica() {
 	int personaje_y_new = personaje_y;
 	int personaje_x_new = personaje_x;
-	
+
 	switch (input)
 	{
 	case UP:
@@ -94,6 +94,8 @@ void Logica() {
 		break;
 	}
 
+	personaje_x_new %= CONSOLE_WIDTH;
+
 	if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::WALL) {
 		personaje_y_new = personaje_y;
 		personaje_x_new = personaje_x;
@@ -110,12 +112,12 @@ void Logica() {
 }
 
 void GenerarMapa() {
-	
+
 	for (int i = 0; i < CONSOLE_HEIGHT; i++)
 	{
 		for (int j = 0; j < CONSOLE_WIDTH; j++)
 		{
-			if (i == 0 || i == CONSOLE_HEIGHT-1 || j == 0 || j == CONSOLE_WIDTH-1)
+			if (i == 0 || i == CONSOLE_HEIGHT - 1 || j == 0 || j == CONSOLE_WIDTH - 1)
 			{
 				ConsoleScreen[i][j] = MAP_TILES::WALL;
 			}
@@ -127,16 +129,20 @@ void GenerarMapa() {
 		cout << endl;
 	}
 
+	ConsoleScreen[5][11] = MAP_TILES::POINT;
+	map_points++;
+
 	ConsoleScreen[5][0] = MAP_TILES::EMPTY;
 	ConsoleScreen[6][0] = MAP_TILES::EMPTY;
 	ConsoleScreen[5][CONSOLE_WIDTH - 1] = MAP_TILES::EMPTY;
 	ConsoleScreen[6][CONSOLE_WIDTH - 1] = MAP_TILES::EMPTY;
+
 }
 
 void ImprimirPantalla() {
-	
+
 	system("cls");
-	
+
 	for (int i = 0; i < CONSOLE_HEIGHT; i++)
 	{
 		for (int j = 0; j < CONSOLE_WIDTH; j++)
