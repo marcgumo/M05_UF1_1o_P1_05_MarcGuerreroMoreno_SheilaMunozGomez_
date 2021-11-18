@@ -127,16 +127,10 @@ void GenerarMapa() {
 		cout << endl;
 	}
 
-	ConsoleScreen[5][11] = MAP_TILES::POINT;
-	map_points++;
-	ConsoleScreen[5][12] = MAP_TILES::POINT;
-	map_points++;
-	ConsoleScreen[5][13] = MAP_TILES::POINT;
-	map_points++;
-	ConsoleScreen[5][14] = MAP_TILES::POINT;
-	map_points++;
-	ConsoleScreen[5][15] = MAP_TILES::POINT;
-	map_points++;
+	ConsoleScreen[5][0] = MAP_TILES::EMPTY;
+	ConsoleScreen[6][0] = MAP_TILES::EMPTY;
+	ConsoleScreen[5][CONSOLE_WIDTH - 1] = MAP_TILES::EMPTY;
+	ConsoleScreen[6][CONSOLE_WIDTH - 1] = MAP_TILES::EMPTY;
 }
 
 void ImprimirPantalla() {
