@@ -116,8 +116,6 @@ void Logica() {
 		quit = true;
 		break;
 	}
-	
-	personaje_x_new %= CONSOLE_WIDTH;
 
 	if (personaje_x_new < 0) {
 		personaje_x_new = CONSOLE_WIDTH - 1;
