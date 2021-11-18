@@ -59,7 +59,7 @@ void Start() {
 
 void Inputs() {
 	char input_raw;
-	cin >> input_raw;
+	input_raw = _getch();
 
 	switch (input_raw)
 	{
