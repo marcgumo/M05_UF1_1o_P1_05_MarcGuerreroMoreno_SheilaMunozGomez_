@@ -116,6 +116,8 @@ void Logica() {
 		quit = true;
 		break;
 	}
+	
+	personaje_x_new %= CONSOLE_WIDTH;
 
 	if (ConsoleScreen[personaje_y_new][personaje_x_new] == MAP_TILES::WALL) {
 		personaje_y_new = personaje_y;
