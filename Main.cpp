@@ -22,6 +22,7 @@ int map_points = 0;
 int player_points = 0;
 USER_INPUTS input = USER_INPUTS::NONE;
 bool quit = false;
+bool win = false;
 
 int main() {
 	
@@ -31,7 +32,9 @@ int main() {
 		Inputs();
 		Logica();
 		ImprimirPantalla();
-	} while (!quit && map_points >= 0);
+	} while (!quit && !win);
+
+	if (win) cout << CYNBACK << BMB << endl << "FELICIDADES HAS GANADO!!" << RESET << endl;
 }
 
 void Start() {
@@ -41,7 +44,7 @@ void Start() {
 
 void Inputs() {
 	char input_raw;
-	cin >> input_raw;
+	input_raw = _getch();
 
 	switch (input_raw)
 	{
@@ -106,7 +109,7 @@ void Logica() {
 	personaje_y = personaje_y_new;
 	personaje_x = personaje_x_new;
 
-	if (map_points == 0) quit = true;
+	if (map_points == 0) win = true;
 }
 
 void GenerarMapa() {
