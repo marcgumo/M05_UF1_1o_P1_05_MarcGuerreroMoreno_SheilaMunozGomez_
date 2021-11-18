@@ -1,4 +1,5 @@
 #include <iostream>;
+#include <conio.h>;
 using namespace std;
 
 #define CONSOLE_HEIGHT 29
@@ -34,7 +35,7 @@ int main() {
 		ImprimirPantalla();
 	} while (!quit && !win);
 
-	if (win) cout << CYNBACK << BMB << endl << "FELICIDADES HAS GANADO!!" << RESET << endl;
+	//if (win) cout << CYNBACK << BMB << endl << "FELICIDADES HAS GANADO!!" << RESET << endl;
 }
 
 void Start() {
