@@ -59,7 +59,7 @@ void Start() {
 
 void Inputs() {
 	char input_raw;
-	cin >> input_raw;
+	input_raw = _getch();
 
 	switch (input_raw)
 	{
@@ -116,6 +116,8 @@ void Logica() {
 		quit = true;
 		break;
 	}
+	
+	personaje_x_new %= CONSOLE_WIDTH;
 
 	if (personaje_x_new < 0) {
 		personaje_x_new = CONSOLE_WIDTH - 1;
