@@ -6,9 +6,10 @@ Miembros del grupo:
   - Marc Guerrero Moreno
   - Sheila Muñoz Gómez
   
-Durante las enteriores semanas hemos estado desarrollando el videojuego de Pacman programando desde Visual Studio con C++.<br />
+<br />
+Durante las enteriores semanas hemos estado desarrollando el videojuego de Pacman programando desde Visual Studio con C++.
 Hemos creado un programa sencillo donde el jugador tendrá que recoger los puntos amarillos para poder ganar la partida. Abajo se puede ver 
-el juego en ejecución, hemos añadido unos teletransportes para hacer más fácil el recorrido por el mapa<br />
+el juego en ejecución, hemos añadido unos teletransportes para hacer más fácil el recorrido por el mapa.<br />
 
 <br />
 
