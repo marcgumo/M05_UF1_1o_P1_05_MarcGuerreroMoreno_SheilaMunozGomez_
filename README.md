@@ -12,6 +12,8 @@ Hemos creado un programa sencillo donde el jugador tendrá que recoger los punto
 el juego en ejecución, hemos añadido unos teletransportes para hacer más fácil el recorrido por el mapa.<br />
 
 <br />
+<br />
+
 
 ![alt text](https://cdn.discordapp.com/attachments/895781837589348392/911211766757871676/unknown.png)
     
