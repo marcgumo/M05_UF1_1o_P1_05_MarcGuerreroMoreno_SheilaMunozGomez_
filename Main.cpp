@@ -2,8 +2,10 @@
 #include <conio.h>
 using namespace std;
 
-//<summary>Nuestro programa consiste en un juego basado en PacMan, generamos un mapa dónde
-//nuestro jugador puede moverse en todas las direcciones y recoger puntos</summary>
+/// <summary>
+/// Nuestro programa consiste en un juego basado en PacMan, generamos un mapa
+/// dónde nuestro jugador puede moverse en todas las direcciones y recoger puntos
+/// </summary>
 
 #define CONSOLE_HEIGHT 29
 #define CONSOLE_WIDTH 119
@@ -22,13 +24,32 @@ using namespace std;
 #define YELLOW "\u001b[33;1m"
 #define RESET "\u001b[0m"
 
-void ImprimirPantalla();
-void GenerarMapa();
-void Inputs();
 void Start();
-void Logica();
+/// <summary>
+/// Llmamos a las primeras funciones para crear y mostrar el mapa
+/// </summary>
 
-//Estos enums definen los diferentes objetos impresos en el mapa y los diferentes inputs del usuario
+void Inputs();
+/// <summary>
+/// Le damos controles al jugador con las teclas
+/// </summary>
+
+void Logica();
+/// <summary>
+/// Añadimos el movimiento del jugador por el mapa, las paredes, la interaccion
+/// con los puntos y 
+/// </summary>
+
+void GenerarMapa();
+/// <summary>
+/// Crear el mapa y añade los puntos que recoge el jugador
+/// </summary>
+
+void ImprimirPantalla();
+/// <summary>
+/// Mostramos el mapa en la pantalla indicando los colores necesarios
+/// </summary>
+
 enum MAP_TILES {EMPTY = ' ', WALL = 39, POINT = '.' };
 enum USER_INPUTS {NONE, UP, DOWN, RIGHT, LEFT, QUIT};
 
@@ -56,13 +77,11 @@ int main() {
 	if (win) cout << CYNBACK << BMB << endl << "FELICIDADES HAS GANADO!!" << RESET << endl;
 }
 
-//Esta función se ejecuta solamente al principio, genera e imprime el mapa
 void Start() {
 	GenerarMapa();
 	ImprimirPantalla();
 }
 
-//Esta función recoge el input del usuario y ejecuta una acción
 void Inputs() {
 	char input_raw;
 	input_raw = _getch();
@@ -100,9 +119,6 @@ void Inputs() {
 	}
 }
 
-
-//Esta función analiza la acción del input y modifica la posición del jugador, además controla
-//los limites del mapa
 void Logica() {
 	int personaje_y_new = personaje_y;
 	int personaje_x_new = personaje_x;
@@ -151,8 +167,6 @@ void Logica() {
 	if (map_points == 0) win = true;
 }
 
-
-//Generamos el mapa en un array y le añadimos los puntos
 void GenerarMapa() {
 	
 	for (int i = 0; i < CONSOLE_HEIGHT; i++)
@@ -187,7 +201,6 @@ void GenerarMapa() {
 	}
 }
 
-//Imprimimos por pantalla el mapa indicando los colores necesarios
 void ImprimirPantalla() {
 	
 	system("cls");
